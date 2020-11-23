@@ -9,7 +9,10 @@ app.use(cookieParser())
 
 app.get("/", csrfProtection, (req, res) => {
   //console.log(req.cookies)
-  res.cookie("simpletest", "qwerty")
+
+  // imagine this next line where we set the cookie instead only happened if you had provided a correct username and password etc...
+  //res.cookie("simpletest", "qwerty", { httpOnly: true })
+
   res.send(`<form action="/transfer-money" method="POST">
     <input type="text" name="amount" placeholder="amount">
     <input type="text" name="to" placeholder="Send to...">
@@ -19,13 +22,12 @@ app.get("/", csrfProtection, (req, res) => {
 })
 
 app.post("/transfer-money", csrfProtection, (req, res) => {
-  console.log(req.cookies)
+  //console.log(req.cookies)
   if (req.cookies.simpletest === "qwerty") {
-    console.log("Success!")
+    res.send("Success!")
   } else {
-    console.log("Failed!")
+    res.send("Failed!")
   }
-  res.send("--")
 })
 
 app.use((err, req, res, next) => {
