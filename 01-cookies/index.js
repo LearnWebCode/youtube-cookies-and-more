@@ -10,8 +10,8 @@ app.use(cookieParser())
 app.get("/", csrfProtection, (req, res) => {
   //console.log(req.cookies)
 
-  // imagine this next line where we set the cookie instead only happened if you had provided a correct username and password etc...
-  //res.cookie("simpletest", "qwerty", { httpOnly: true })
+  // imagine this next line where we set the cookie instead only happened if you had just provided a correct username and password etc...
+  res.cookie("simpletest", "qwerty", { httpOnly: true })
 
   res.send(`<form action="/transfer-money" method="POST">
     <input type="text" name="amount" placeholder="amount">
