@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
     <button>Submit</button>
   </form>
   <form action="/logout" method="POST">
-   
+    <input type="hidden" name="_csrf" value="${req.csrfToken()}">
     <button>Logout</button>
   </form>
   `)
